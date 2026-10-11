@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee List</title>
+</head>
+<body>
+
+<table border="1" cellspacing="0" cellpadding="5" align="center">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="e : ${employee}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.name}"></td>
+        <td th:text="${e.mobile}"></td>
+        <td th:text="${e.email}"></td>
+        <td th:text="${e.salary}"></td>
+        <td>
+            <img th:src="@{${e.imageLink}}" alt="Employee Image" width="120px" height="80px">
+        </td>
+        <td>
+            <a th:href="@{/edit(id=${e.id})}" class="btn">Edit</a> &nbsp;
+            <a th:href="@{/delete(id=${e.id})}" class="btn">Delete</a>
+            
+        </td>
+    </tr>
+</table>
+
+<script>
+    var message = "[[${msg}]]";
+    if(message){
+        alert(message);
+    }
+</script>
+
+</body>
+</html>
